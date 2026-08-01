@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Para Lii, mi mejor amiga ❤️</title>
+
+<!-- Tipografías: una serif elegante para titulares, una script para el mensaje íntimo,
+     y una sans redondeada y suave para el cuerpo de texto -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Dancing+Script:wght@500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       CURSOR PERSONALIZADO
+  ============================================================= -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <div id="countdown-overlay" class="countdown-overlay" aria-live="polite">
+    <div class="countdown-card glass">
+      <p class="countdown-eyebrow">El jardín se abrirá</p>
+      <h2 class="countdown-title" id="countdown-label">Mañana a las 12:00</h2>
+      <div class="countdown-grid">
+        <div class="countdown-box"><span id="cd-days">00</span><small>días</small></div>
+        <div class="countdown-box"><span id="cd-hours">00</span><small>horas</small></div>
+        <div class="countdown-box"><span id="cd-minutes">00</span><small>min</small></div>
+        <div class="countdown-box"><span id="cd-seconds">00</span><small>seg</small></div>
+      </div>
+      <p class="countdown-hint">Cuando llegue la hora, la sorpresa aparecerá automáticamente.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       INTRO CINEMATOGRÁFICA
+       Pantalla negra → partículas → pétalos → jardín → texto
+  ============================================================= -->
+  <div id="intro" class="intro">
+    <canvas id="intro-canvas"></canvas>
+    <div class="intro-glow"></div>
+    <h1 class="intro-text" id="intro-text" aria-live="polite"></h1>
+    <button id="intro-skip" class="intro-skip">Entrar al jardín →</button>
+  </div>
+
+  <!-- ============================================================
+       FONDO VIVO — persiste detrás de todas las secciones
+  ============================================================= -->
+  <div class="living-bg" id="living-bg" aria-hidden="true">
+    <div class="sky-gradient"></div>
+    <div class="stars" id="stars"></div>
+    <div class="celestial" id="celestial"></div>
+    <div class="clouds" id="clouds"></div>
+    <div class="mist"></div>
+    <div class="light-rays"></div>
+    <canvas id="petals-canvas"></canvas>
+    <canvas id="fireflies-canvas"></canvas>
+    <div class="hills"></div>
+    <div class="grass" id="grass"></div>
+  </div>
+
+  <!-- Foco que sigue al cursor -->
+  <div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       NAV FLOTANTE
+  ============================================================= -->
+  <nav class="dot-nav" id="dot-nav" aria-label="Navegación de secciones">
+    <a href="#hero" data-label="Inicio" class="dot active"></a>
+    <a href="#carta" data-label="Carta" class="dot"></a>
+    <a href="#jardin" data-label="Jardín" class="dot"></a>
+    <a href="#galeria" data-label="Flores" class="dot"></a>
+    <a href="#bouquet" data-label="Ramo" class="dot"></a>
+    <a href="#momentos" data-label="Momentos" class="dot"></a>
+    <a href="#final" data-label="Para ti" class="dot"></a>
+  </nav>
+
+  <!-- Control de sonido -->
+  <button id="sound-toggle" class="sound-toggle magnetic" aria-pressed="false">
+    <span class="sound-icon">♪</span>
+    <span class="sound-wave"></span>
+  </button>
+
+  <main id="main">
+
+    <!-- ============================================================
+         1. HERO
+    ============================================================= -->
+    <section id="hero" class="section hero">
+      <div class="hero-content">
+        <p class="eyebrow reveal-word">un jardín, solo para ti, amiga</p>
+        <h1 class="hero-title">
+          <span class="line reveal-blur">Cada flor de este lugar</span>
+          <span class="line reveal-blur" style="--d:0.15s">nació pensando</span>
+          <span class="line reveal-blur script-accent" style="--d:0.3s">en ti</span>
+        </h1>
+        <p class="hero-sub reveal-blur" style="--d:0.5s">Desliza despacio. Este jardín crece con tu alegría.</p>
+        <div class="scroll-cue">
+          <span></span>
+          <p>desplázate</p>
+        </div>
+      </div>
+      <div class="hero-flowers" id="hero-flowers"></div>
+    </section>
+
+    <!-- ============================================================
+         2. CARTA ROMÁNTICA
+    ============================================================= -->
+    <section id="carta" class="section letter-section">
+      <div class="letter-card glass reveal-up">
+        <div class="letter-seal">❤</div>
+        <p class="letter-eyebrow">una carta para ti</p>
+        <div class="letter-body">
+          <p>Hola, Lii,</p>
+          <p>Hay personas que llegan y cambian la forma en que uno mira el mundo. Tú eres una de esas personas. Siempre has sabido hacer que los días se sientan más bonitos, más ligeros y más llenos de sentido, y por eso quise construirte este pequeño jardín: para que cada flor te recuerde un motivo por el que te valoro tanto.</p>
+          <p>No es una página cualquiera. Es un lugar que respira, florece y guarda cariño, como el que siento por ti.</p>
+          <p class="letter-sign">Con cariño y gratitud,<br><span class="script-accent">tu amigo Pau </span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. JARDÍN INTERACTIVO
+    ============================================================= -->
+    <section id="jardin" class="section garden-section">
+      <div class="section-heading reveal-word">
+        <p class="eyebrow">jardín interactivo</p>
+        <h2>Tócalas. Hazlas florecer.</h2>
+        <p class="section-hint">Pasa el cursor cerca de una flor y obsérvala inclinarse. Haz clic para verla abrir.</p>
+      </div>
+      <div class="interactive-garden" id="interactive-garden"></div>
+    </section>
+
+    <!-- ============================================================
+         4. GALERÍA DE FLORES
+    ============================================================= -->
+    <section id="galeria" class="section gallery-section">
+      <div class="section-heading reveal-word">
+        <p class="eyebrow">galería</p>
+        <h2>Nueve flores, nueve razones</h2>
+      </div>
+      <div class="flower-gallery" id="flower-gallery"></div>
+    </section>
+
+    <!-- ============================================================
+         5. BOUQUET GIGANTE
+    ============================================================= -->
+    <section id="bouquet" class="section bouquet-section">
+      <div class="section-heading reveal-word light">
+        <p class="eyebrow">para ti</p>
+        <h2>Un ramo hecho de instantes</h2>
+      </div>
+      <div class="bouquet-stage" id="bouquet-stage"></div>
+    </section>
+
+    <!-- ============================================================
+         6. MOMENTOS ESPECIALES
+    ============================================================= -->
+    <section id="momentos" class="section moments-section">
+      <div class="section-heading reveal-word">
+        <p class="eyebrow">momentos</p>
+        <h2>Fragmentos que guardo</h2>
+        <!-- Edita las tarjetas de abajo: cambia el texto y, si quieres,
+             reemplaza el div.moment-art por <img src="tu-foto.jpg"> -->
+      </div>
+      <div class="moments-track" id="moments-track">
+        <article class="moment-card glass">
+          <div class="moment-art moment-art--1"></div>
+          <p class="moment-date">el día uno</p>
+          <p class="moment-text">La primera vez que hablamos, el tiempo se movió distinto.</p>
+        </article>
+        <article class="moment-card glass">
+          <div class="moment-art moment-art--2"></div>
+          <p class="moment-date">las risas</p>
+          <p class="moment-text">Tienes una risa que arregla días completos.</p>
+        </article>
+        <article class="moment-card glass">
+          <div class="moment-art moment-art--3"></div>
+          <p class="moment-date">lo simple</p>
+          <p class="moment-text">Contigo hasta lo ordinario se siente como una escena bonita.</p>
+        </article>
+        <article class="moment-card glass">
+          <div class="moment-art moment-art--4"></div>
+          <p class="moment-date">hoy</p>
+          <p class="moment-text">Y aquí seguimos, escribiendo lo que sigue.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. MENSAJE FINAL
+    ============================================================= -->
+    <section id="final" class="section finale-section">
+      <canvas id="finale-canvas"></canvas>
+      <div class="finale-content">
+        <div class="finale-heart" id="finale-heart">❤</div>
+        <h2 class="finale-line reveal-blur">Gracias por ser tú</h2>
+        <h2 class="finale-line finale-line--script script-accent reveal-blur" style="--d:0.2s">Lii, mi mejor amiga</h2>
+        <button id="replay-btn" class="replay-btn magnetic">Volver a vivir esta historia</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
